@@ -7,6 +7,7 @@ const moment = require('moment');
 const port = process.env.PORT || 3000;
 const mongoose = require('mongoose');
 
+
 hbs.registerHelper('inc', value => parseInt(value) + 1);
 hbs.registerHelper('substring', (str, start, end) => typeof str === 'string' ? str.substring(start, end) : '');
 hbs.registerHelper('eq', (a, b) => a === b);
@@ -110,8 +111,9 @@ if (require.main === module) {
     console.log('Server is running on port ' + port);
   });
 }
+/*
 mongoose.connect('mongodb://localhost:27017/ermad')
 .then(() => {  console.log("Connected to MongoDB");})
 .catch((error) => { console.error("Error connecting to MongoDB:", error); });
-
+*/
 module.exports = app;
