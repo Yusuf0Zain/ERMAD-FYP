@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - Create Post</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><img src ="ERMADheader.png"></h1>
+        <div class="search-container">
+            <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search ..." >
+            <select name="category">
+                <option value="">All Categories</option>
+                {{#each categories}}
+                <option value="{{this.Categoryname}}">{{this.Categoryname}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" >Search</button>
+            </form>
+        </div>
+        <nav class="user-nav">
+            <span  style="margin-right: 10px;">
+                {{#if username}}Hello, {{username}}{{/if}}
+            </span>
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+    <div class="back-button-container">
+        <button onclick="window.location.href='/Discussions'" class="back-button">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+    </div>
+    <main class="main-content">
+        <section class="upload-section">
+            <h2>Create Post</h2>
+            <form id="upload-form" action="/Create" method="POST">
+                <div class="form-group">
+                    <label for="Title">Title</label>
+                    <input type="text" id="Title" name="Title" required>
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea id="Description" name="Description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category</label>
+                    <select id="Category" name="Category" required>
+                        {{#if categories}}
+                        {{#each categories}}
+                        <option >{{this.Categoryname}}</option>
+                        {{/each}}
+                        {{else}}
+                        <option disabled>No categories available</option>
+                        {{/if}}
+                    </select>
+                </div>
+                <button type="submit" class="btn">Upload</button>
+            </form>
+        </section>
+    </main>
+
+    <script src="../control/main.js"></script>
+</body>
+</html>

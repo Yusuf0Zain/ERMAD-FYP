@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - My Materials</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><img src ="ERMADheader.png"></h1>
+        <div class="search-container">
+            <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search ..." >
+            <select name="category">
+                <option value="">All Categories</option>
+                {{#each categories}}
+                <option value="{{this.Categoryname}}">{{this.Categoryname}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" >Search</button>
+            </form>
+        </div>
+        <nav class="user-nav">
+            <span  class="displayUser">
+                {{#if username}}Hello, {{username}}{{/if}}
+            </span>
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+    <div class="back-button-container">
+        <button onclick="window.location.href='/home' " class="back-button">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+
+    </div>
+
+            <div class ="front-button">
+                <nav class="quick-links">
+                    <div class="upload-dropdown">
+                    <button onclick="toggleUploadMenu()" class="btn">Upload</button>
+                    <div id="uploadMenu">
+                        <a href="/Upload">Upload Material</a>
+                        <a href="/Create">Create Post</a>
+                    </div>
+                    </div>
+                </nav>
+                <script>
+                function toggleUploadMenu() {
+                    var menu = document.getElementById('uploadMenu');
+                    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                    // Hide menu when clicking outside
+                    document.addEventListener('click', function handler(e) {
+                    if (!menu.contains(e.target) && e.target.className !== 'btn') {
+                        menu.style.display = 'none';
+                        document.removeEventListener('click', handler);
+                    }
+                    });
+                }
+                </script>
+            </div>
+        <main >
+            <table>
+            <tr>
+                <thead>
+                <th>Title</th>
+                <th>Status</th>
+                <th>Status</th>
+                </thead>
+
+            </tr>
+            {{#each files}}
+                <tr>
+                <td>{{this.title}}</td>
+                <td>
+                    {{#if (eq this.status "verifying")}}Verifying{{/if}}
+                    {{#if (eq this.status "accepted")}}Accepted{{/if}}
+                    {{#if (eq this.status "declined")}}Declined{{/if}}
+                </td>
+                <td>
+                    {{#if (eq this.status "accepted")}}
+                    <a href="/uploads/{{this.file}}" > View</a>
+                    {{else}}
+                    <span>Not available</span>
+                    {{/if}}
+                </td>
+                </tr>
+            {{/each}}
+            </table>
+</main>
+
+    <script src="../control/main.js"></script>
+</body>
+</html>

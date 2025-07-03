@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - Edit</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><img src ="/ERMADheader.png"></h1>
+        <div class="search-container">
+            <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search ..." >
+            <select name="category">
+                <option value="">All Categories</option>
+                {{#each categories}}
+                <option value="{{this.Categoryname}}">{{this.Categoryname}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" >Search</button>
+            </form>
+        </div>
+        <nav class="user-nav">
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+    <div class="back-button-container">
+        <button onclick="window.location.href='/Home'" class="back-button">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+    </div>
+    <main class="main-content">
+        <section class="upload-section">
+            {{#if (eq type "file")}}
+            <h2>Edit File</h2>
+            <form id="edit-file-form" action="/edit/file/{{file._id}}" method="POST" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="title">Name</label>
+                    <input type="text" id="title" name="title" value="{{file.title}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" name="description" required>{{file.description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category</label>
+                    <select id="Category" name="Category" required>
+                        {{#if categories}}
+                        {{#each categories}}
+                        <option value="{{this.Categoryname}}" {{#if (eq this.Categoryname ../file.Category)}}selected{{/if}}>{{this.Categoryname}}</option>
+                        {{/each}}
+                        {{else}}
+                        <option disabled>No categories available</option>
+                        {{/if}}
+                    </select>
+                </div>
+                <button type="submit" class="btn">Update</button>
+            </form>
+            {{else if (eq type "post")}}
+            <h2>Edit Post</h2>
+            <form id="edit-post-form" action="/edit/post/{{post._id}}" method="POST">
+                <div class="form-group">
+                    <label for="Title">Name</label>
+                    <input type="text" id="Title" name="Title" value="{{post.Title}}" required>
+                </div>
+                <div class="form-group">
+                    <label for="Description">Description</label>
+                    <textarea id="Description" name="Description" required>{{post.Description}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="Category">Category</label>
+                    <select id="Category" name="Category" required>
+                        {{#if categories}}
+                        {{#each categories}}
+                        <option value="{{this.Categoryname}}" {{#if (eq this.Categoryname ../post.Category)}}selected{{/if}}>{{this.Categoryname}}</option>
+                        {{/each}}
+                        {{else}}
+                        <option disabled>No categories available</option>
+                        {{/if}}
+                    </select>
+                </div>
+                <button type="submit" class="btn">Update</button>
+            </form>
+            {{/if}}
+        </section>
+    </main>
+
+    <script src="../control/main.js"></script>
+
+</body>
+</html>

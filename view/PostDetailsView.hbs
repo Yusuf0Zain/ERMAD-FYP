@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - Post Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+    <header class="header">
+        <h1 class="logo"><img src ="/ERMADheader.png"></h1>
+        <div class="search-container">
+            <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search ..." >
+            <select name="category">
+                <option value="">All Categories</option>
+                {{#each categories}}
+                <option value="{{this.Categoryname}}">{{this.Categoryname}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" >Search</button>
+            </form>
+        </div>
+        <nav class="user-nav">
+            <span  class="displayUser">
+                {{#if username}}Hello, {{username}}{{/if}}
+            </span>
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+    <div class="back-button-container">
+        <button onclick="window.location.href='/Discussions'" class="back-button">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+    <main class="main-content">
+            <section class="post-details">
+            <article class="post">
+            <h2 class="post-title">{{post.Title}}</h2>
+            <p class="post-content">{{post.Description}}</p>
+            <div class="file-meta">
+                <span class="post-author">Posted by: {{post.UploadedBy}}</span>
+                <p><span>Category : {{post.Category}}</span></p>
+                <p>
+                    <span class="post-date"> Date :{{formatDate post.UploadDate "DD/MM/YYYY"}}</span>
+                </p>
+            </div>
+            </article>
+            </section>
+
+
+    </main>
+        <section class="replies">
+            <h3>Replies</h3>
+                {{#if replies.length}}
+                    {{#each replies}}
+                        <div class="reply">
+                            <p class="reply-content">{{this.Reply}}</p>
+                            <div class="reply-meta">
+                                <span class="reply-author">{{this.ReplyBy}}</span>
+                                <span class="reply-date">{{formatDate this.ReplyDate "DD/MM/YYYY"}}</span>
+                            </div>
+                        </div>
+                    {{/each}}
+                {{else}}
+                    <p>No replies yet.</p>
+                {{/if}}
+                <form class="reply-form" action="/reply/{{post._id}}" method="POST">
+                    <textarea id="Reply" name="Reply" placeholder="Write your reply here..." required></textarea>
+                    <button type="submit">Post Reply</button>
+                </form>
+            </section>
+
+    <script src="../control/main.js"></script>
+</body>
+</html>

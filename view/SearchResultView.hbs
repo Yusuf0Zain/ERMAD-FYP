@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - Search Results</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><img src ="ERMADheader.png"></h1>
+        <div class="search-container">
+            <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search posts...">
+            <select name="category">
+                <option value="">All Categories</option>
+                {{#each categories}}
+                <option value="{{this.Categoryname}}">{{this.Categoryname}}</option>
+                {{/each}}
+            </select>
+            <button type="submit">Search</button>
+            </form>
+        </div>
+        <nav class="user-nav">
+            <span class= "displayUser" >
+                {{#if username}}Hello, {{username}}{{/if}}
+            </span>
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+    <div class="back-button-container">
+        <button onclick="window.location.href='/home' " class="back-button">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+
+            <div class ="front-button">
+                <nav class="quick-links">
+                    <div class="upload-dropdown">
+                    <button onclick="toggleUploadMenu()" class="btn">Upload</button>
+                    <div id="uploadMenu">
+                        <a href="/Upload">Upload Material</a>
+                        <a href="/Create">Create Post</a>
+                    </div>
+                    </div>
+                </nav>
+                <script>
+                function toggleUploadMenu() {
+                    var menu = document.getElementById('uploadMenu');
+                    menu.style.display = (menu.style.display === 'block') ? 'none' : 'block';
+                    // Hide menu when clicking outside
+                    document.addEventListener('click', function handler(e) {
+                    if (!menu.contains(e.target) && e.target.className !== 'btn') {
+                        menu.style.display = 'none';
+                        document.removeEventListener('click', handler);
+                    }
+                    });
+                }
+                </script>
+            </div>
+        <main >
+        <section class="discussion-list">
+            <h2>Search Results{{#if query}} for "{{query}}"{{/if}}</h2>
+            <h3>Posts</h3>
+            {{#if posts.length}}
+            <ul>
+                {{#each posts}}
+                <li class="discussion-item">
+                    <a href="/view/{{this._id}}" class="discussion-link">{{this.Title}}</a> ({{this.Category}})
+                </li>
+                {{/each}}
+            </ul>
+   </a>         {{else}}
+            <p>No posts found.</p>
+            {{/if}}
+
+            <h3>Materials</h3>
+                {{#if materials.length}}
+                <ul>
+                    {{#each materials}}
+                    <li class="discussion-item">
+                        {{this.title}} ({{this.Category}})
+                        {{#if this.file}}
+                        <a href="/viewFile/{{this._id}}" class="discussion-link">{{this.title}}</a> ({{this.Category}})
+                        {{/if}}
+                    </li>
+                    {{/each}}
+                </ul>
+                {{else}}
+                <p>No materials found.</p>
+                {{/if}}
+        </section>
+</main>
+
+    <script src="../control/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - Home</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><img src ="ERMADheader.png"></h1>
+        <nav class="user-nav">
+            <span  style="margin-right: 10px;">
+                {{#if username}}Hello, {{username}}{{/if}}
+            </span>
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+
+    <main class="main-home">
+        <div class="Main-img">
+            <img src="ERMADhome.png" >
+        </div>
+        <nav class="quick-links">
+            <a href="/Userlists" class="btn">Manage Users</a>
+            <a href="/PostsLists" class="btn">Manage Posts</a>
+            <a href="/filesLists" class="btn">Manage Files</a>
+            <a href="/Verifications" class="btn">Verify files</a>
+            <a href="/Categories" class="btn">Manage Categories</a>
+        </nav>
+    </main>
+
+    <script src="../control/main.js"></script>
+</body>
+</html>

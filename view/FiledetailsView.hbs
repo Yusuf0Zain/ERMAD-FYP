@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ERMAD - File Details</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1 class="logo"><img src ="/ERMADheader.png"></h1>
+        <div class="search-container">
+            <form action="/search" method="GET">
+            <input type="text" name="q" placeholder="Search ..." >
+            <select name="category">
+                <option value="">All Categories</option>
+                {{#each categories}}
+                <option value="{{this.Categoryname}}">{{this.Categoryname}}</option>
+                {{/each}}
+            </select>
+            <button type="submit" >Search</button>
+            </form>
+        </div>
+        <nav class="user-nav">
+            <span class="displayUser">
+                {{#if username}}Hello, {{username}}{{/if}}
+            </span>
+            <a href="/login" class="logout-btn">LOGOUT</a>
+        </nav>
+    </header>
+        <div class="back-button-container">
+        <button onclick="window.location.href='/Materials'" class="back-button">
+            <svg class="arrow-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+        </button>
+    </div>
+    <main>
+        {{#if (eq file.extension "pdf")}}
+          <iframe src="../uploads/1750753966900-WameedMUCLecture_2021_92553827.pdf" class="pdf-preview-half"></iframe>
+        {{else}}
+          <div class="pdf-preview-half" style="display:flex;align-items:center;justify-content:center;">
+            <span>No preview available</span>
+          </div>
+        {{/if}}
+        <div class="file-details-content">
+          <h1 class="file-title">{{file.title}}</h1>
+          <div class="file-description">{{file.description}}</div>
+          <div class="file-meta">
+            Uploaded by: {{file.uploadedBy}}<br>
+            Date: {{formatDate file.uploadDate "DD/MM/YYYY"}}
+          </div>
+          <div class="download-btn-bottom">
+            <a href="/uploads/{{file.file}}" download class="btn">Download</a>
+          </div>
+        </div>
+    </main>
+</body>
+</html>
