@@ -4,7 +4,7 @@ const path = require('path');
 const hbs = require('hbs');
 const session = require('express-session');
 const moment = require('moment');
-
+const port = process.env.PORT || 3000;
 
 hbs.registerHelper('inc', value => parseInt(value) + 1);
 hbs.registerHelper('substring', (str, start, end) => typeof str === 'string' ? str.substring(start, end) : '');
@@ -106,8 +106,7 @@ app.get('/Admin', (req, res) => {
 
 module.exports = app;
 
-/*
-app.listen(3000, function () {
-console.log('Server is running');
+
+app.listen(port, () => {
+console.log('Server is running on port ' + port);
 });
-*/
