@@ -104,6 +104,10 @@ app.get('/Admin', (req, res) => {
   res.render('AdminView');
 });
 
+module.exports = app;
+
+/*
 app.listen(3000, function () {
-  console.log('Server is running');
+console.log('Server is running');
 });
+*/
