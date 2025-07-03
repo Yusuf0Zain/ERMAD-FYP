@@ -104,9 +104,10 @@ app.get('/Admin', (req, res) => {
   res.render('AdminView');
 });
 
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log('Server is running on port ' + port);
+  });
+}
+
 module.exports = app;
-
-
-app.listen(port, () => {
-console.log('Server is running on port ' + port);
-});
