@@ -10,10 +10,11 @@
     justify-content: center;
     align-items: center;
     height: 300px;
-}
+    pointer-events: none; }
 .Main-img img {
     max-width: 150%;
     max-height: 150%;
+
 }
 
 

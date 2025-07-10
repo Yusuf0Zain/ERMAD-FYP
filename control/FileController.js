@@ -52,7 +52,7 @@ router.get('/Materials', async (req, res) => {
   let grouped = {};
   if (sort === 'alphabetic') {
     Files.forEach(file => {
-      const letter = file.Title ? file.Title[0].toUpperCase() : '#';
+      const letter = file.title ? file.title[0].toUpperCase() : '#';
       if (!grouped[letter]) grouped[letter] = [];
       grouped[letter].push(file);
     });
