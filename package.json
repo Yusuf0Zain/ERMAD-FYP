@@ -16,6 +16,6 @@
     "uuid": "^11.1.0"
   },
   "scripts": {
-    "start": "nodemon main.js"
+    "start": "nodemon control/main.js"
   }
 }
