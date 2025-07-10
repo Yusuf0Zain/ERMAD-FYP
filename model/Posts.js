@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb://localhost:27017/ermad')
+mongoose.connect('mongodb+srv://zainelshaikhy:123@ermad.dkp8rwz.mongodb.net/')
 
 const PosSchemea = new mongoose.Schema({
 
