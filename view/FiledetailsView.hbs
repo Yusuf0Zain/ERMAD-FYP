@@ -36,13 +36,6 @@
         </button>
     </div>
     <main>
-        {{#if (eq file.extension "pdf")}}
-          <iframe src="../uploads/1750753966900-WameedMUCLecture_2021_92553827.pdf" class="pdf-preview-half"></iframe>
-        {{else}}
-          <div class="pdf-preview-half" style="display:flex;align-items:center;justify-content:center;">
-            <span>No preview available</span>
-          </div>
-        {{/if}}
         <div class="file-details-content">
           <h1 class="file-title">{{file.title}}</h1>
           <div class="file-description">{{file.description}}</div>
@@ -52,6 +45,7 @@
           </div>
           <div class="download-btn-bottom">
             <a href="/uploads/{{file.file}}" download class="btn">Download</a>
+            <a href="/uploads/{{file.file}}" class="btn" > View</a>
           </div>
         </div>
     </main>

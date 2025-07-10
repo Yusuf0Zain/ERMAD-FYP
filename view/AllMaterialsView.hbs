@@ -78,11 +78,6 @@
                         <a href="/viewFile/{{this._id}}" class="discussion-link">
                             <h3 class="discussion-title">{{this.title}}</h3>
                             <div class="discussion-preview">
-                                {{#if this.Preview}}
-                                    <img src="data:image/png;base64,{{this.Preview}}" alt="Preview" class="file-preview-img"/>
-                                {{else}}
-                                    <span class="no-preview">No preview available</span>
-                                {{/if}}
                             </div>
                             <p class="discussion-description">
                                 {{#if this.description}}
