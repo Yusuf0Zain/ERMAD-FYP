@@ -112,7 +112,7 @@ if (require.main === module) {
   });
 }
 
-mongoose.connect('mongodb+srv://zainelshaikhy:123@ermad.dkp8rwz.mongodb.net/')
+mongoose.connect('mongodb+srv://zainelshaikhy:123@cluster0.3x3pfy1.mongodb.net/')
 .then(() => {  console.log("Connected to MongoDB");})
 .catch((error) => { console.error("Error connecting to MongoDB:", error); });
 

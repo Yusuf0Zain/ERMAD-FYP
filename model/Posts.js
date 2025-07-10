@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect('mongodb+srv://zainelshaikhy:123@ermad.dkp8rwz.mongodb.net/')
+mongoose.connect('mongodb+srv://zainelshaikhy:123@cluster0.3x3pfy1.mongodb.net/')
 
 const PosSchemea = new mongoose.Schema({
 
